@@ -1,0 +1,15 @@
+openapi: 3.0.0
+info:
+  title: Blog API
+  version: 1.0.0
+  description: API documentation for the Blog application
+
+servers:
+  - url: http://localhost:4000/api/v1
+    description: Local server
+
+paths:
+  /category:
+    $ref: './category.docs.yaml#/paths/~1category'
+  /category/{id}:
+    $ref: './category.docs.yaml#/paths/~1category~1{id}'

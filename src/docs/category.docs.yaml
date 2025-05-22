@@ -1,0 +1,94 @@
+paths:
+  /category:
+    get:
+      summary: Get all categories
+      tags:
+        - Category
+      responses:
+        '200':
+          description: List of categories
+    post:
+      summary: Create a new category
+      tags:
+        - Category
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                slug:
+                  type: string
+              required:
+                - name
+                - slug
+      responses:
+        '201':
+          description: Category created
+        '400':
+          description: CREATE_CATEGORY_FAILED
+        '409':
+          description: CATEGORY_ALREADY_EXISTS
+
+  /category/{id}:
+    get:
+      summary: Get category by ID
+      tags:
+        - Category
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Category found
+        '404':
+          description: CATEGORY_NOT_FOUND
+
+    put:
+      summary: Update category
+      tags:
+        - Category
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                slug:
+                  type: string
+      responses:
+        '200':
+          description: Category updated
+        '400':
+          description: UPDATE_CATEGORY_FAILED
+
+    delete:
+      summary: Soft delete category
+      tags:
+        - Category
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Category deleted
+        '400':
+          description: DELETE_CATEGORY_FAILED
